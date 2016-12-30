@@ -24,7 +24,7 @@ var products = [
     }),
     new Product({
         imagePath: 'https://subscribe.nhl.com/sections/sell-page/images/appletv.jpg',
-        title: 'Apple',
+        title: 'Apple TV',
         description: 'Apple TV Digital Streaming Device!!',
         price: 150
     }),

@@ -23,6 +23,20 @@ router.get('/profile', isLoggedIn, function(req, res, next){
     });
 });
 
+router.get('/add-to-cart/:id', function (req, res, next) {
+    var productId = req.params.id;
+    var cart = new Cart(req.session.cart ? req.session.cart: {});
+
+    Product.findById(productId, function(err, product){
+        if (err){
+            return res.redirect('/');
+        }
+        cart.add(product, product.id);
+        req.session.cart = cart;
+        res.redirect('user/profile');
+    });
+});
+
 router.get('/logout', function (req, res, next) {
     req.logout();
     res.redirect('/');
@@ -69,8 +83,6 @@ router.post('/signin',passport.authenticate('local.signin', {
         res.redirect('/user/profile');
     }
 });
-
-
 
 module.exports = router;
 

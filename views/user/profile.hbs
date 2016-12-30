@@ -8,14 +8,36 @@
                 <div class="panel-body">
                     <ul class="list-group">
                         {{# each this.items}}
-                            <li class="list-group-item">
-                                <span class="badge">{{ this.price }}</span>
-                               {{ this.item.title }} | {{ this.qty }}
+                            <li class="list-group-item thumbnail2">
+                                <span class="badge">${{ this.price }}</span>
+                                <ul class="list-inline">
+                                    <li><img src="{{this.item.imagePath}}" class="img-responsive"></li>
+                                    <li>
+                                        <p><strong>{{ this.item.title }}</strong></p>
+                                        <p class="description">{{ this.item.description }} </p>
+                                        <p>Qty: {{ this.qty }}</p>
+                                        <a href="/user/add-to-cart/{{ this.item._id }}" class="btn btn-success" role="button">Buy it Again</a>
+                                    </li>
+
+                                </ul>
+
                             </li>
                         {{/each}}
                     </ul>
                 </div>
-                <div class="panel-footer"><strong>Total Price: ${{ this.cart.totalPrice }}</strong>
+                <div class="panel-footer">
+                    <table class="table table-condensed">
+                        <tr>
+                            <td>Total Price:</td>
+                            <td>Date Ordered:</td>
+                            <td>Order ID#:</td>
+                        </tr>
+                        <tr>
+                            <td>${{ this.cart.totalPrice }}</td>
+                            <td>{{ this.date }}</td>
+                            <td>{{ this._id }}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         {{/each}}
