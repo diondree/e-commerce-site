@@ -17,7 +17,11 @@ var userRoutes = require('./routes/user');
 
 var app = express();
 
-mongoose.connect(process.env.MONGODB_URI || 'localhost:27017/shopping');
+var dbURI = 'localhost:27017/shopping';
+if (process.env.NODE_ENV === 'production') {
+  dbURI= process.env.MONGOLAB_URI;
+}
+mongoose.connect(dbURI);
 require('./config/passport');
 
 // view engine setup
